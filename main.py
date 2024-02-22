@@ -1,65 +1,81 @@
-# Initialize an empty list to store contacts
-contacts = []
 
-# Function to create (insert) a contact into the list
-def create_contact(name, number):
-    contact = {"name": name, "number": number}
-    contacts.append(contact)
-    print("Contact added successfully!")
+import json
 
-# Function to read (retrieve) all contacts from the list
+def load_contacts():
+  try:
+    with open("contacts.json", "r") as file:
+      return json.load(file)
+  except FileNotFoundError:
+    return []
+
+def save_contacts(contacts):
+  with open("contacts.json", "w") as file:
+    json.dump(contacts, file)
+
+def create_contact():
+  name = input("Enter name: ")
+  phone = input("Enter phone number: ")
+  email = input("Enter email (optional): ")
+  contact = {"name": name, "phone": phone, "email": email}
+  contacts.append(contact)
+  save_contacts(contacts)
+  print("Contact added successfully!")
+
 def read_contacts():
-    if contacts:
-        print("Contacts in the phone book:")
-        for index, contact in enumerate(contacts, start=1):
-            print(f"{index}. Name: {contact['name']}, Number: {contact['number']}")
-    else:
-        print("The phone book is empty.")
+  if not contacts:
+    print("No contacts found.")
+  else:
+    for index, contact in enumerate(contacts):
+      print(f"{index+1}. Name: {contact['name']}")
+      print(f"  Phone: {contact['phone']}")
+      if contact.get("email"):
+        print(f"  Email: {contact['email']}")
+      print("--------------------")
 
-# Function to update a contact in the list
-def update_contact(index, new_name, new_number):
-    if 1 <= index <= len(contacts):
-        contacts[index - 1]["name"] = new_name
-        contacts[index - 1]["number"] = new_number
-        print("Contact updated successfully!")
-    else:
-        print("Invalid index. Please enter a valid index.")
+def update_contact():
+  contact_index = int(input("Enter the index of the contact to update: ")) - 1
+  if 0 <= contact_index < len(contacts):
+    contact = contacts[contact_index]
+    name = input("Enter new name (leave blank to keep current): ") or contact["name"]
+    phone = input("Enter new phone number (leave blank to keep current): ") or contact["phone"]
+    email = input("Enter new email (leave blank to keep current): ") or contact.get("email")
+    contact = {"name": name, "phone": phone, "email": email}
+    contacts[contact_index] = contact
+    save_contacts(contacts)
+    print("Contact updated successfully!")
+  else:
+    print("Invalid contact index.")
 
-# Function to delete a contact from the list
-def delete_contact(index):
-    if 1 <= index <= len(contacts):
-        deleted_contact = contacts.pop(index - 1)
-        print(f"Contact '{deleted_contact['name']}' deleted successfully!")
-    else:
-        print("Invalid index. Please enter a valid index.")
+def delete_contact():
+  contact_index = int(input("Enter the index of the contact to delete: ")) - 1
+  if 0 <= contact_index < len(contacts):
+    del contacts[contact_index]
+    save_contacts(contacts)
+    print("Contact deleted successfully!")
+  else:
+    print("Invalid contact index.")
 
-# Main program loop
+contacts = load_contacts()
+
 while True:
-    print("\nCRUD Operations for Phone Book:")
-    print("1. Add a contact")
-    print("2. View all contacts")
-    print("3. Update a contact")
-    print("4. Delete a contact")
-    print("5. Exit")
+  print("\nPhone Book CRUD Menu:")
+  print("1. Create Contact")
+  print("2. Read Contacts")
+  print("3. Update Contact")
+  print("4. Delete Contact")
+  print("5. Exit")
 
-    choice = input("Enter your choice (1-5): ")
+  choice = input("Enter your choice: ")
 
-    if choice == '1':
-        name = input("Enter the contact's name: ")
-        number = input("Enter the contact's number: ")
-        create_contact(name, number)
-    elif choice == '2':
-        read_contacts()
-    elif choice == '3':
-        index = int(input("Enter the index of the contact to update: "))
-        new_name = input("Enter the new name: ")
-        new_number = input("Enter the new number: ")
-        update_contact(index, new_name, new_number)
-    elif choice == '4':
-        index = int(input("Enter the index of the contact to delete: "))
-        delete_contact(index)
-    elif choice == '5':
-        print("Exiting program...")
-        break
-    else:
-        print("Invalid choice. Please enter a valid option (1-5).")
+  if choice == "1":
+    create_contact()
+  elif choice == "2":
+    read_contacts()
+  elif choice == "3":
+    update_contact()
+  elif choice == "4":
+    delete_contact()
+  elif choice == "5":
+    break
+  else:
+    print("Invalid choice.")
