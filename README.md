@@ -14,14 +14,17 @@ By: Bryan Stevanus
    Masukkan nama kontak.
    Masukkan nomor telepon kontak.
    Masukkan alamat email kontak (opsional).
+   Masukkan kota domisili dan alamat
+   Masukkan user ID (wajib)
+   Program akan menanyakan untuk menyimpan data kedalam json atau tidak. jika tidak program akan kempali ke menu utama
    Program akan menyimpan kontak baru dan menampilkan pesan konfirmasi.
 
-3. Melihat Daftar Kontak (Pilihan 2):
+4. Melihat Daftar Kontak (Pilihan 2):
    Ketik angka 2 dan tekan Enter.
    Jika tidak ada kontak, program akan menampilkan pesan "Tidak ada kontak ditemukan."
    Jika ada kontak, program akan menampilkan daftar nama dan nomor teleponnya.
 
-4. Mengubah Kontak (Pilihan 3):
+5. Mengubah Kontak (Pilihan 3):
    Ketik angka 3 dan tekan Enter.
    Masukkan nomor urut kontak yang ingin diubah (sesuai daftar yang muncul pada pilihan 2).
    Program akan meminta konfirmasi:Masukkan nama baru (kosongi untuk mempertahankan nama lama).
@@ -29,12 +32,12 @@ By: Bryan Stevanus
    Masukkan alamat email baru (kosongi untuk mempertahankan email lama).
    Program akan memperbarui kontak dan menampilkan pesan konfirmasi.
 
-5. Menghapus Kontak (Pilihan 4):
+6. Menghapus Kontak (Pilihan 4):
    Ketik angka 4 dan tekan Enter.
    Masukkan nomor urut kontak yang ingin dihapus (sesuai daftar yang muncul pada pilihan 2).
    Program akan meminta konfirmasi penghapusan.
    Jika dikonfirmasi, program akan menghapus kontak dan menampilkan pesan konfirmasi.
 
-6. Keluar (Pilihan 5):
+7. Keluar (Pilihan 5):
    Ketik angka 5 dan tekan Enter.
    Program akan berhenti dan menyimpan perubahan data kontak.
