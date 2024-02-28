@@ -16,7 +16,7 @@ By: Bryan Stevanus
    Masukkan alamat email kontak (opsional).
    Masukkan kota domisili dan alamat
    Masukkan user ID (wajib)
-   Program akan menanyakan untuk menyimpan data kedalam json atau tidak. jika tidak program akan kempali ke menu utama
+   Program akan menanyakan untuk menyimpan data kedalam json atau tidak. jika tidak program akan kembali ke menu utama
    Program akan menyimpan kontak baru dan menampilkan pesan konfirmasi.
 
 4. Melihat Daftar Kontak (Pilihan 2):
@@ -30,14 +30,17 @@ By: Bryan Stevanus
    Program akan meminta konfirmasi:Masukkan nama baru (kosongi untuk mempertahankan nama lama).
    Masukkan nomor telepon baru (kosongi untuk mempertahankan nomor lama).
    Masukkan alamat email baru (kosongi untuk mempertahankan email lama).
+   Masukkan kategori user (pribadi atau organisasi)
+   Program akan menanyakan untuk menyimpan data kedalam json atau tidak. jika tidak program akan kembali ke menu utama
    Program akan memperbarui kontak dan menampilkan pesan konfirmasi.
 
-6. Menghapus Kontak (Pilihan 4):
+7. Menghapus Kontak (Pilihan 4):
    Ketik angka 4 dan tekan Enter.
    Masukkan nomor urut kontak yang ingin dihapus (sesuai daftar yang muncul pada pilihan 2).
    Program akan meminta konfirmasi penghapusan.
+   Program akan menanyakan untuk menyimpan data kedalam json atau tidak. jika tidak program akan kembali ke menu utama
    Jika dikonfirmasi, program akan menghapus kontak dan menampilkan pesan konfirmasi.
 
-7. Keluar (Pilihan 5):
+9. Keluar (Pilihan 5):
    Ketik angka 5 dan tekan Enter.
    Program akan berhenti dan menyimpan perubahan data kontak.
