@@ -4,6 +4,13 @@ def load_contacts():
     # Load contacts from a dictionary
     return contacts
 
+def load_contacts_json():
+  try:
+    with open("contacts.json", "r") as file:
+      return json.load(file)
+  except FileNotFoundError:
+    return []
+
 def save_contacts(contacts):
     with open("contacts.json", "w") as file:
         json.dump(contacts, file)
@@ -35,7 +42,7 @@ def create_contact():
 
 def read_contacts():
     if not contacts:
-        print("No contacts found.")
+        print("No contacts found in local dictionary.")
     else:
         for index, contact in enumerate(contacts):
             print(f"{index+1}. Name: {contact['name']}")
@@ -82,8 +89,15 @@ def update_contact():
     print("Contact not found.")
 
 def delete_contact():
-    phone = input("Enter phone number of the contact to delete: ")
-    for contact in contacts:
+    delete_choice=input("From where do you want to delete? 1.JSON, 2.Local      ")
+
+    if delete_choice=="1":
+        con_del=load_contacts_json()
+        phone = input("Enter phone number of the contact to delete: ")
+    elif delete_choice=="2":
+        con_del=contacts
+        phone = input("Enter phone number of the contact to delete: ")
+    for contact in con_del:
         if contact["phone"] == phone:
             contacts.remove(contact)
             choice = input("Save to JSON? (1.Yes, 2.No): ")
@@ -98,9 +112,16 @@ def delete_contact():
     print("Contact not found.")
 
 def search_contact():
-    search_term = input("Enter name or phone number to search: ")
-    found = False
-    for contact in contacts:
+    search_choice=input("Search in json file or locally? 1. JSON, 2.Local Dictionary   ")
+    if search_choice=="1":
+        search_term = input("Enter name or phone number to search: ")
+        found = False
+        json_contacts=load_contacts_json()
+    elif search_choice=="2":
+        search_term = input("Enter name or phone number to search: ")
+        found = False
+        json_contacts=load_contacts()
+    for contact in json_contacts:
         if search_term.lower() in contact["name"].lower() or search_term == contact["phone"]:
             print("Contact found:")
             print(f" Name: {contact['name']}")
